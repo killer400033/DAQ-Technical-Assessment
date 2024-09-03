@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import LiveValue from "./live_value";
-import RedbackLogo from "./redback_logo.jpg";
+import RedbackLogo from "./redback_logo.png";
 import "./App.css";
 import useWebSocket, { ReadyState } from "react-use-websocket";
+import TemperatureGraph from "./temp_graph";
 
 const WS_URL = "ws://localhost:8080";
 
@@ -13,6 +14,7 @@ interface VehicleData {
 
 function App() {
   const [temperature, setTemperature] = useState<number>(0);
+  const [temperatureData, setTemperatureData] = useState<Array<{ timestamp: number; temperature: number }>>([]);
   const {
     lastJsonMessage,
     readyState,
@@ -41,6 +43,14 @@ function App() {
       return;
     }
     setTemperature(lastJsonMessage["battery_temperature"]);
+    setTemperatureData((prevData) => {
+      const updatedData = [
+        ...prevData,
+        { timestamp: lastJsonMessage.timestamp, temperature: lastJsonMessage.battery_temperature },
+      ].filter((entry) => entry.timestamp >= Date.now() - 15000);
+
+      return updatedData;
+    });
   }, [lastJsonMessage]);
 
   return (
@@ -54,6 +64,9 @@ function App() {
         <p className="value-title">Live Battery Temperature</p>
         <LiveValue temp={temperature} />
       </header>
+      <div className="graph-container">
+        <TemperatureGraph data={temperatureData} />
+      </div>
     </div>
   );
 }

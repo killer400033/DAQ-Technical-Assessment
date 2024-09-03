@@ -46,4 +46,6 @@ To fix it, we can catch the exception and log a message to the terminal rather t
 
 To add the battery temp check on the streaming-service, a timeout was added that starts whenever an out of range temp is detected, and then we check for more than 3 out of range temps before the timeout times out.
 
+To make the front end better, I decided to style the temperature readout better and add a graph over time, (showing a rolling readout over 15 seconds). I also added a shaded region to the graph showing where the temperature exceeds 20-80 range.
+
 ## Cloud
