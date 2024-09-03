@@ -11,7 +11,7 @@ const WS_PORT = 8080;
 const tcpServer = net.createServer();
 const websocketServer = new WebSocketServer({ port: WS_PORT });
 
-let tempExceedCount = 0;
+let tempExceedCount: number = 0;
 let tempExceedTimeout: NodeJS.Timeout | null = null;
 
 tcpServer.on("connection", (socket) => {
