@@ -35,14 +35,13 @@ DBCSignal::DBCSignal(string signal) {
 
     stringStream >> ws;
     char ch;
-    stringStream.peek() == '"';
     stringStream.get(ch);
     getline(stringStream, unit, '"');
 }
 
 float DBCSignal::getValue(uint64_t data) {
     float output;
-    uint64_t mask = (uint64_t)((uint64_t)(1 << length) - 1) << (64 - length - startBit);
+    uint64_t mask = ((uint64_t)(1 << length) - 1) << (64 - length - startBit);
     data = (data & mask) >> (64 - length - startBit);
 
     switch (length) {
@@ -59,6 +58,7 @@ float DBCSignal::getValue(uint64_t data) {
             output = (isSigned) ? ApplyEndianAndSign<uint64_t, int64_t>(data) : ApplyEndianAndSign<uint64_t, uint64_t>(data);
             break;
         default:
+            throw runtime_error("Unsupported signal bit length");
             break;
     }
 

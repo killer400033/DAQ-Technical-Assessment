@@ -4,7 +4,8 @@ namespace dbc {
     class DBCFrame {
     public:
         DBCFrame(std::string dbc);
-        void print(std::string time, uint32_t dataId, uint64_t data, std::ostream &outFile);
+        void print(std::string time, uint64_t data, std::ostream &outFile);
+        int getId(void);
 
     private:
         std::string name;

@@ -56,7 +56,9 @@ int main(int argc, char *argv[]) {
         ss2 << hex << dataStr;
         ss2 >> data;
 
-        dbcFrame.print(time, id, data, outFile);
+        if (dbcFrame.getId() == id) {
+            dbcFrame.print(time, data, outFile);
+        }
     }
 
     logFile.close();

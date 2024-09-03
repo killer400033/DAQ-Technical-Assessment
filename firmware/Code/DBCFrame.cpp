@@ -28,13 +28,15 @@ DBCFrame::DBCFrame(string dbc) {
     }
 }
 
-void DBCFrame::print(string time, uint32_t dataId, uint64_t data, ostream &outFile) {
-    if (id == dataId) {
-        for (int i = 0; i < signals.size(); i++) {
-            outFile << time << ": "
-                << signals[i].getName() << ": "
-                << fixed << setprecision(1)
-                << signals[i].getValue(data) << "\n";
-        }
+void DBCFrame::print(string time, uint64_t data, ostream &outFile) {
+    for (size_t i = 0; i < signals.size(); i++) {
+        outFile << time << ": "
+            << signals[i].getName() << ": "
+            << fixed << setprecision(1)
+            << signals[i].getValue(data) << "\n";
     }
+}
+
+int DBCFrame::getId(void) {
+    return id;
 }
