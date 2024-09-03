@@ -1,3 +1,22 @@
 Use this file to write your answer to Stage 2 of the firmware tasks.
 
 Question 1:
+What are advantages and disadvantages of CAN over other protocols such as USB, PCIE, SPI etc? List reasons of why Redback Racing's Embedded Systems, Powertrain, DAQ and Autonomous Vehicles(AV) departments would use CAN?
+   Hint: CAN has a lot of desirable properties
+
+CAN has many advantages, such as:
+- Can be implemented with good error detection such as CRC as shown above.
+- Has very good noise resistance due to the use of differential signals and a twisted pair cable.
+- Good fault tolerance, where certain nodes being cut off won't effect the overall bus.
+- CAN can work over long distances in high noise environments.
+- CAN supports multiple masters on the same bus.
+- Supports prioriized messaging to allow for more critical data to be delivered faster.
+- CAN is a standard used in many industries like the car industry, which is similar to what Redback does.
+
+
+The disadvantages of CAN include:
+- Lower datarates, maxing out at a couple Mb/s
+- Limited to smaller payloads/ frames
+- No native encryption
+
+However, these drawbacks aren't really an issue to redback as the data being transmitted isn't likely that big, and no sensitive information is being transmitted that requires encryption. Hence, with all the advantages outlined, especially the fact that it is already a standard in the automotive industry makes it very easy to use and implement in a Redback car.

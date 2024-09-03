@@ -16,6 +16,7 @@ DBCSignal is a class that contains all the details of a single signal in the dat
 
 To make an implementation of this fast, I made tried to make the processing required to calculate the value minimal, where if lots of dbc frames were being used, a hashmap could be used to quickly look up which DBCFrame matches the given ID, then extract the data.
 
+To support endianness, I had to limit the signal bit lengths to either 8, 16, 32 or 64 bits.
 ## Telemetry
 
 ## Cloud
