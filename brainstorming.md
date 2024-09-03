@@ -14,6 +14,8 @@ DBCFrame is a class that contains the id, name and references to the signals tha
 
 DBCSignal is a class that contains all the details of a single signal in the database. From the DBCFrame, it is given just the information about one specific signal. It can also use this information to process a given 64 bit peice of information.
 
+To make an implementation of this fast, I made tried to make the processing required to calculate the value minimal, where if lots of dbc frames were being used, a hashmap could be used to quickly look up which DBCFrame matches the given ID, then extract the data.
+
 ## Telemetry
 
 ## Cloud
